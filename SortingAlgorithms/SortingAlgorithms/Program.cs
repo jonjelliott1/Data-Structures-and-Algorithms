@@ -11,8 +11,8 @@ namespace SortingAlgorithms
     //        // 2. bublle sort
     //        // 3. selection sort
 
-            
-            
+
+
     //        Console.WriteLine("Hello World!");
     //    }
     //}
@@ -36,13 +36,14 @@ namespace SortingAlgorithms
             numElements++;
 
         }
-    
-    public void DisplayElements()
+
+        public void DisplayElements()
         {
             for (int i = 0; i <= upper; i++)
                 Console.Write(arr[i] + " ");
+            Console.WriteLine();
         }
-    
+
         public void Clear()
         {
             for (int i = 0; i <= upper; i++)
@@ -56,7 +57,7 @@ namespace SortingAlgorithms
             int temp;
             for (int outer = upper; outer >= 1; outer--)
             {
-                Console.WriteLine("Start Outer for"+ "inner: " + outer);
+                Console.WriteLine("Start Outer for" + "inner: " + outer);
                 // if inner value is less than or equal to outer value
                 // or if first value is greater than last
                 for (int inner = 0; inner <= outer - 1; inner++)
@@ -65,19 +66,40 @@ namespace SortingAlgorithms
                     {
                         //This swaps the item on the left with the item adjacent on the right
                         //set first to temp
-                        Console.WriteLine("Swapping " + arr[inner] + " in loc: " +inner+ " with " + arr[inner + 1] + " in loc: " + (inner + 1));
+                        Console.WriteLine("Swapping " + arr[inner] + " in loc: " + inner + " with " + arr[inner + 1] + " in loc: " + (inner + 1));
                         temp = arr[inner];
                         //move adjecent to first to first
                         arr[inner] = arr[inner + 1];
                         //set item that was in first into the place second was in.
                         arr[inner + 1] = temp;
-                        
-                        
+
+
                     }
                 Console.WriteLine("End Outer for" + "outer: " + outer);
-                this.DisplayElements();
+                DisplayElements();
             }
         }
+
+
+        public void SelectionSort()
+        {
+            int min, temp;
+            for (int outer = 0; outer <= upper; outer++)
+            {
+                min = outer;
+                for (int inner = outer + 1; inner <= upper; inner++)
+                {
+                    //Console.WriteLine("Swapping " + arr[inner] + " in loc: " + inner + " with " + arr[inner + 1] + " in loc: " + (inner + 1));
+                    if (arr[inner] < arr[min])
+                        min = inner;
+                }
+                this.DisplayElements();
+                temp = arr[outer];
+                arr[outer] = arr[min];
+                arr[min] = temp;
+            }
+        }
+
         ////array of numbers 0 - 49
         //static void Main()
         //{
@@ -90,17 +112,37 @@ namespace SortingAlgorithms
         //array of 10 random numbers
         static void Main()
         {
-            CArray nums = new CArray(50);
-            Random rnd = new Random(100);
-            for (int i = 0; i < 50; i++)
+
+
+            ////Start Bubble Sort
+            //CArray nums = new CArray(50);
+            //Random rnd = new Random(100);
+            //for (int i = 0; i < 50; i++)
+            //    nums.Insert((int)(rnd.NextDouble() * 100));
+            //nums.DisplayElements();
+            //nums.BubbleSort();
+            //Console.WriteLine();
+            //nums.DisplayElements();
+            ////End Bubble Sort
+
+
+            //Start Selection Sort
+            CArray nums = new CArray(5);
+            Random rnd = new Random(10);
+            for (int i = 0; i < 5; i++)
                 nums.Insert((int)(rnd.NextDouble() * 100));
             nums.DisplayElements();
-            nums.BubbleSort();
+            nums.SelectionSort();
             Console.WriteLine();
             nums.DisplayElements();
+
+            //End Selection Sort
+
+
+
         }
 
 
     }
-    
+
 }
